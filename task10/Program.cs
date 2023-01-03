@@ -10,7 +10,7 @@
 Console.WriteLine("Введите трехзначное число: ");
 int number = Convert.ToInt32(Console.ReadLine());
 
-if (number >= 100 && number <=1000)
+if ((number >= 100 && number <=1000) || (number >= -1000 && number <=-100))
 {
    Console.WriteLine($"Вторая цифра введенного числа {(number /10)% 10} ");
 }
