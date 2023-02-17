@@ -41,4 +41,4 @@ int QuantutyElemInRange(int[] array, int min, int max)
 int[] arr = CreateArrayRndInt(123, 0, 1000);
 PrintArray(arr);
 int quantutyElemInRange = QuantutyElemInRange(arr, 10,99);
-System.Console.WriteLine(quantutyElemInRange);
+Console.WriteLine(quantutyElemInRange);
