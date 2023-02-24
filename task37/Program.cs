@@ -1,45 +1,53 @@
-﻿// Задача 37: 
-// Найдите произведение пар чисел в одномерном массиве. 
-// Парой считаем первый и последний элемент, второй и предпоследний и т.д. 
-// Результат запишите в новом массиве.
-// [1 2 3 4 5] -> 5 8 3 // [6 7 3 6] -> 36 21
-int[] CreateArrayRndInt(int size, int min, int max)
-{
-    int[] array = new int[size]; //array.Length==size
-    var rnd = new Random();
+﻿// Задача 37: Найдите произведение пар чисел в одномерном массиве. 
+//Парой считаем первый и последний элемент,
+// второй и предпоследний и т.д. Результат запишите в новом массиве.
+//[1 2 3 4 5] -> 5 8 3
+//[6 7 3 6] -> 36 21
 
-for (int i = 0; i < size; i++)
+
+int[] newArr = RandomArray(7);
+PrintArray(newArr);
+PrintArray(FindSumOfPairs(newArr));
+
+int[] FindSumOfPairs(int[] array)
 {
-    array[i] = rnd.Next(min, max+1);
-}
-    return array;    
-}
-void PrintArray(int[] array)
-{
-    Console.Write("[");
-    for (int i = 0; i < array.Length; i++)
+    int newSize = array.Length / 2;
+
+    if(array.Length % 2 == 1)
     {
-        if (i < array.Length -1) Console.Write($"{array[i]}, ");
-        else Console.Write($"{array[i]}");   
+        newSize++;
     }
-    Console.WriteLine("]");
-}
+    int[] result = new int[newSize];
 
-int[]  MultiplicateFirstLastNum(int[] array)
-{
-    int lenghtNewArray = default;
-    if (array.Length % 2 == 0) lenghtNewArray = array.Length / 2;
-    else lenghtNewArray = (array.Length / 2) +1;
-    int[] newArray = new int [lenghtNewArray];
-    
-    for (int i = 0; i < newArray.Length; i++)
+    for(int i = 0; i < array.Length / 2; i++)
     {
-       newArray[i] = array[i] * array[array.Lenght -1 -i];
+        result[i] = array[i] * array[array.Length - 1 - i];
     }
-    return newArray;
+
+    if(array.Length % 2 == 1)
+    {
+        result[newSize -1] = array[array.Length / 2];
+    }
+    return result;
 }
 
-int[] arr = CreateArrayRndInt(6, 0, 5);
-PrintArray(arr);
-int[] multiplicateFirstLastNum = MultiplicateFirstLastNum(arr);
-PrintArray(MultiplicateFirstLastNum);
+
+int[] RandomArray(int length)
+{
+     int[]arr = new int[length];
+     for(int i = 0; i < length; i++)
+     {
+         arr[i] = new Random().Next(1,10);
+     }
+     return arr;
+}
+
+void PrintArray(int[] arr)
+
+{    
+    foreach(int item in arr)
+    {
+        System.Console.Write($"{item}, ");
+    } 
+    System.Console.WriteLine();
+}
